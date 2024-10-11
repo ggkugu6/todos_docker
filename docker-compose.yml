@@ -1,11 +1,13 @@
 version: '3.8'
 
+networks:
+  my-todos-network:
+    driver: bridge
+
 services:
   # Сервер Node.js
   server:
     image: andrey522526/my-todos-app:server
-    ports:
-      - "8082:8082"
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: andrey
@@ -13,14 +15,16 @@ services:
       DATABASE_URL: postgres://postgres:andrey@db:5432/todos
     depends_on:
       - db
+    networks:
+      - my-todos-network
 
   # Клиент (React.js)
   client:
     image: andrey522526/my-todos-app:client
-    ports:
-      - "80:80"
     depends_on:
       - server
+    networks:
+      - my-todos-network
 
   # База данных PostgreSQL
   db:
@@ -30,12 +34,13 @@ services:
       POSTGRES_PASSWORD: andrey
       POSTGRES_DB: todos
       PGDATA: /var/lib/postgresql/data/pgdata
-    ports:
-      - "5432:5432"
     volumes:
-      - ./data:/var/lib/postgresql/data
-      - ./pg_backup.sql
+      - todos-db:/var/lib/postgresql/data
+    networks:
+      - my-todos-network
 
-# Определение тома для хранения данных PostgreSQL
 volumes:
-  todos-db-1:
+  todos-db:
+
+networks:
+  my-todos-network:
