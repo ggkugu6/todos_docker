@@ -8,7 +8,7 @@ networks:
 services:
   # Сервер Node.js
   server:
-    image: andrey522526/my-todos-app:server
+    image: andrey522526/my-todos-app:server-v2
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: andrey
@@ -21,7 +21,7 @@ services:
 
   # Клиент (React.js)
   client:
-    image: andrey522526/my-todos-app:client
+    image: andrey522526/my-todos-app:client-v2
     ports:
       - "80:80"
     depends_on:
