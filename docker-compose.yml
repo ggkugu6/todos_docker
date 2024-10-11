@@ -34,6 +34,7 @@ services:
       - "5432:5432"
     volumes:
       - ./data:/var/lib/postgresql/data
+      - ./pg_backup.sql
 
 # Определение тома для хранения данных PostgreSQL
 volumes:
