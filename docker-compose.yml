@@ -3,7 +3,7 @@ version: '3.8'
 # Определение пользовательской сети
 networks:
   my-todos-network:
-    driver: bridge
+    driver: bridge 
 
 services:
   # Сервер Node.js
