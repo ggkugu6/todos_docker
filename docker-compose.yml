@@ -39,7 +39,6 @@ services:
       PGDATA: /var/lib/postgresql/data/pgdata
     volumes:
       - todos-db:/var/lib/postgresql/data
-      - koyeb/pg_backup
     networks:
       - my-todos-network
 
