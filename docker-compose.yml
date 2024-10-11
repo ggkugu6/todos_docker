@@ -1,5 +1,6 @@
 version: '3.8'
 
+# Определение пользовательской сети
 networks:
   my-todos-network:
     driver: bridge
@@ -21,6 +22,8 @@ services:
   # Клиент (React.js)
   client:
     image: andrey522526/my-todos-app:client
+    ports:
+      - "80:80"
     depends_on:
       - server
     networks:
@@ -36,11 +39,9 @@ services:
       PGDATA: /var/lib/postgresql/data/pgdata
     volumes:
       - todos-db:/var/lib/postgresql/data
+      - C:/Users/Андрей/Downloads/pg:/backup
     networks:
       - my-todos-network
 
 volumes:
   todos-db:
-
-networks:
-  my-todos-network:
