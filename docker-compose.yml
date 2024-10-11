@@ -39,7 +39,7 @@ services:
       PGDATA: /var/lib/postgresql/data/pgdata
     volumes:
       - todos-db:/var/lib/postgresql/data
-      - C:/Users/Андрей/Downloads/pg:/backup
+      - koyeb/pg_backup
     networks:
       - my-todos-network
 
