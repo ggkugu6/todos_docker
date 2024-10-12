@@ -16,7 +16,7 @@ services:
 
   # Клиентское приложение (React.js)
   client:
-    image: andrey522526/my-todos-app:client  # Образ клиента из Docker Hub
+    image: andrey522526/my-todos-app:client-v3  # Образ клиента из Docker Hub
     expose:
       - "80"  # Порт, на котором клиент доступен внутри Docker-сети
     networks:
