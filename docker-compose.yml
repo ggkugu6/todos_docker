@@ -39,7 +39,7 @@ services:
 
   # База данных PostgreSQL
   db:
-    image: postgres:16
+    image: andrey522526/postgres_backup:data
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: andrey
