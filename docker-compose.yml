@@ -21,7 +21,7 @@ services:
 
   # Клиент (React.js)
   client:
-    image: andrey522526/my-todos-app:client-v2
+    image: andrey522526/my-todos-app:client-v3
     ports:
       - "80:80"
     depends_on:
