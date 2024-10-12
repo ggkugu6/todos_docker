@@ -1,14 +1,32 @@
 version: '3.8'
 
-# Определение пользовательской сети
-networks:
-  my-todos-network:
-    driver: bridge 
-
 services:
+  # NGINX, который будет служить фронтенд-сервером и проксировать запросы к серверу Node.js
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"  # Открываем порт 80 для доступа извне
+    depends_on:
+      - client
+      - server
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf  # Подключаем кастомную конфигурацию NGINX
+    networks:
+      - my-todos-network
+
+  # Клиентское приложение (React.js)
+  client:
+    image: andrey522526/my-todos-app:client  # Образ клиента из Docker Hub
+    expose:
+      - "80"  # Порт, на котором клиент доступен внутри Docker-сети
+    networks:
+      - my-todos-network
+
   # Сервер Node.js
   server:
-    image: andrey522526/my-todos-app:server-v2
+    image: andrey522526/my-todos-app:server  # Образ сервера из Docker Hub
+    expose:
+      - "8082"  # Порт, по которому сервер будет доступен внутри Docker-сети
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: andrey
@@ -19,28 +37,20 @@ services:
     networks:
       - my-todos-network
 
-  # Клиент (React.js)
-  client:
-    image: andrey522526/my-todos-app:client-v3
-    ports:
-      - "80:80"
-    depends_on:
-      - server
-    networks:
-      - my-todos-network
-
   # База данных PostgreSQL
   db:
-    image: andrey522526/my-todos-app:db
+    image: postgres:16
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: andrey
       POSTGRES_DB: todos
-      PGDATA: /var/lib/postgresql/data/pgdata
     volumes:
       - todos-db:/var/lib/postgresql/data
     networks:
       - my-todos-network
+
+networks:
+  my-todos-network:
 
 volumes:
   todos-db:
