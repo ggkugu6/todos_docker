@@ -24,7 +24,7 @@ services:
 
   # Сервер Node.js
   server:
-    image: andrey522526/my-todos-app:servv  # Образ сервера из Docker Hub
+    image: andrey522526/my-todos-app:servvv  # Образ сервера из Docker Hub
     expose:
       - "8082"  # Порт, по которому сервер будет доступен внутри Docker-сети
     environment:
