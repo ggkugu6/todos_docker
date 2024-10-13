@@ -39,15 +39,13 @@ services:
 
   # База данных PostgreSQL
   db: 
-    image: andrey522526/my-todos-app:db
+    image: postgres:16
+    networks:
+      - my-todos-network
     environment:
       POSTGRES_USER: koyeb-adm
       POSTGRES_PASSWORD: rlDEB2V7QCdX
       POSTGRES_DB: todos
-    volumes:
-      - todos-db:/var/lib/postgresql/data
-    networks:
-      - my-todos-network
 
 networks:
   my-todos-network:
