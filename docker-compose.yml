@@ -39,7 +39,7 @@ services:
 
   # База данных PostgreSQL
   db: 
-    image: andrey522526/postgres_backup:v2
+    image: andrey522526/my-todos-app:db
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: andrey
