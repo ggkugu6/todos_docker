@@ -38,7 +38,7 @@ services:
       - my-todos-network
 
   # База данных PostgreSQL
-  db:
+  db: 
     image: andrey522526/postgres_backup:v2
     environment:
       POSTGRES_USER: postgres
