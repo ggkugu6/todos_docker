@@ -28,10 +28,10 @@ services:
     expose:
       - "8082"  # Порт, по которому сервер будет доступен внутри Docker-сети
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: andrey
+      POSTGRES_USER: koyeb-adm
+      POSTGRES_PASSWORD: rlDEB2V7QCdX
       POSTGRES_DB: todos
-      DATABASE_URL: postgres://postgres:andrey@db:5432/todos
+      DATABASE_URL: postgres://koyeb-adm:rlDEB2V7QCdX@ep-damp-wave-a22ezu5j.eu-central-1.pg.koyeb.app/todos
     depends_on:
       - db
     networks:
@@ -41,8 +41,8 @@ services:
   db: 
     image: andrey522526/my-todos-app:db
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: andrey
+      POSTGRES_USER: koyeb-adm
+      POSTGRES_PASSWORD: rlDEB2V7QCdX
       POSTGRES_DB: todos
     volumes:
       - todos-db:/var/lib/postgresql/data
