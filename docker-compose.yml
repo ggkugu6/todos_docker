@@ -24,7 +24,7 @@ services:
 
   # Сервер Node.js
   server:
-    image: andrey522526/my-todos-app:serev  # Образ сервера из Docker Hub
+    image: andrey522526/my-todos-app:serevv  # Образ сервера из Docker Hub
     expose:
       - "8082"  # Порт, по которому сервер будет доступен внутри Docker-сети
     environment:
@@ -32,23 +32,8 @@ services:
       POSTGRES_PASSWORD: rlDEB2V7QCdX
       POSTGRES_DB: todos
       DATABASE_URL: postgres://koyeb-adm:rlDEB2V7QCdX@ep-damp-wave-a22ezu5j.eu-central-1.pg.koyeb.app/todos
-    depends_on:
-      - db
     networks:
       - my-todos-network
-
-  # База данных PostgreSQL
-  db: 
-    image: postgres:16
-    networks:
-      - my-todos-network
-    environment:
-      POSTGRES_USER: koyeb-adm
-      POSTGRES_PASSWORD: rlDEB2V7QCdX
-      POSTGRES_DB: todos
 
 networks:
   my-todos-network:
-
-volumes:
-  todos-db:
